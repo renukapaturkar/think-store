@@ -7,9 +7,21 @@ export const CartContext = createContext();
 const reducerFunction = (state, action) => {
     switch(action.type){
         case "ADDTOCART":
+            if(state.cartItem.some((item)=> item.id === action.payload.id)){
+                const  newArray = state.cartItem.map((item)=> {
+                    return item.id == action.payload.id ? {...item, quantity: item.quantity + 1} : item
+                });
+                return {
+                    ...state, cartItem: newArray,
+                };
+
+            }else {
                 return {
                     ...state, cartItem: [...state.cartItem, action.payload]
                 }
+                
+            }
+                
             
         case "WISHLIST":
             return {
