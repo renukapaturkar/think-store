@@ -1,7 +1,7 @@
 import React, { useContext} from 'react';
 import '../App.css';
 import { CartContext } from '../context/cart-context';
-import productImg from '../images/productImg.jpg';
+
 
 
 
@@ -20,26 +20,24 @@ export function Cart() {
           cartItem.map((item)=> {
               return (
                   
-                      <span class="card card-horizontal">
-                          <img class="card-img" src={productImg} alt="img"/>
-                          <div key={item.id}>
-
-                          <h4>{item.name}</h4>
-                          <p>{item.price}</p>
+                      <div class="card ">
+                            <div class="img-container"><img class="card-img" src={`${item.image_url}`} alt="img"/></div>
+                            <em>{item.title}</em>
+                            <p>Rs.{item.price}</p>
+                            <span>
                           <span>
-                          
-                          <span>
-                          <button class="btn btn-small" onClick={()=>dispatch({type:"INCREASE_QUANTITY", payload: item.id})}>+</button>
-                          <span>{item.quantity}</span>
-                          <button class="btn btn-small" onClick={()=>dispatch({type:"DECREASE_QUANTITY", payload: item.id})}>-</button>
+                          <button class="btn-small" onClick={()=>dispatch({type:"INCREASE_QUANTITY", payload: item.id})}>+</button>
+                          <span>1</span>
+                          <button class="btn-small" onClick={()=>dispatch({type:"DECREASE_QUANTITY", payload: item.id})}>-</button>
                           </span>
-                          <button class="btn icon-btn"  onClick={()=>dispatch({type:"REMOVE_FROM_CART", payload: item})}>X</button>
+
+                          
                       </span>
                       
                               
                           </div>
 
-                      </span>
+                      
                       
                       
                   
@@ -48,12 +46,13 @@ export function Cart() {
       }
       
       </div>
-        
+      <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>  
       </div>
   
   
   
   )
+  
   }
   
 

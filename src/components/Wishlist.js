@@ -1,7 +1,7 @@
 import React, { useContext} from 'react';
 import '../App.css';
 import { CartContext } from '../context/cart-context';
-import productImg from '../images/productImg.jpg';
+
 
 export function Wishlist() {
     const { cartItem } = useContext(CartContext);
@@ -17,12 +17,12 @@ export function Wishlist() {
               return (
                   
                       <span class="card">
-                          <img class="card-img" src={productImg} alt="img"/>
-                          <h4>{item.name}</h4>
-                          <p>{item.price}</p>
+                           <div class="img-container"><img class="card-img" src={`${item.image_url}`} alt="img"/></div>
+                           <em>{item.title}</em>
+                            <p>Rs.{item.price}</p>
                           <span>
-                          <button class="btn btn-dark btn-dark-hover">Add to Cart</button>
-                          <button class="btn btn-dark btn-dark-hover">Remove</button>
+                          <button class="btn btn-dark btn-dark-hover">Move to Cart</button>
+                          
                           </span>
                       </span>
                       
