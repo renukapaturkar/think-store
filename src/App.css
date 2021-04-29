@@ -1,8 +1,7 @@
 :root {
   --primary-color: #475569;
-  --white-color: #F8FAFC;
-  --light-grey-color: #E5E7EB;
-
+  --white-color: #f8fafc;
+  --light-grey-color: #e5e7eb;
 }
 
 .App {
@@ -11,8 +10,6 @@
 
 .container {
   display: flex;
-  
-  
 }
 .filter-container {
   flex-direction: column;
@@ -29,9 +26,7 @@
   padding: 1rem 2rem 2rem 2rem;
 }
 
-
-
-.link{
+.link {
   text-decoration: none;
 }
 
@@ -43,31 +38,27 @@
 .list-inline {
   display: inline;
   padding: 1rem;
-  color:var(--white-color);
+  color: var(--white-color);
   cursor: pointer;
-  
 }
 
-
-.heading{
+.heading {
   font-weight: normal;
   font-size: 32px;
-  padding:1rem;
+  padding: 1rem;
   color: var(--white-color);
 }
 
-
 .navigation {
-  width:100%;
+  width: 100%;
   height: 5rem;
   background-color: var(--primary-color);
-  position:sticky;
+  position: sticky;
   top: 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
   z-index: 1;
-  
 }
 
 .card-container {
@@ -76,44 +67,47 @@
   justify-content: center;
   width: 100%;
   flex-wrap: wrap;
-  
-  
 }
 .card {
   display: flex;
   flex-direction: column;
-  border: 1px solid #D1D5DB;
+  border: 1px solid #d1d5db;
   width: 19rem;
   height: 27rem;
   padding: 0.5rem;
   margin: 1rem;
   justify-content: start;
   position: relative;
-  
-  /* box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.4); */ 
-
 }
-.card h4, p{
+.card h5, p {
   margin: 0;
 }
-/* .card-vertical {
+.card-horizontal {
+  display: flex;
   flex-direction: row;
-  position: relative;
+  width: 35rem;
+  height: 13rem;
 
-} */
+}
 
 .img-container {
   height: 19rem;
+}
+.img-horizontal-container {
+  height: 12rem;
+  width: 9rem;
+  padding: 0.5rem;
+}
+.content-container{
+  padding-left: 2rem;
+  align-content: flex-start;
+  text-align: start;
 }
 
 .card-img {
   max-width: 100%;
   height: 100%;
-  
-  
-  
 }
-
 
 .btn {
   padding: 0.5rem;
@@ -123,33 +117,29 @@
   font-weight: normal;
   font-size: 0.9rem;
   border: none;
-  color:white;
-  font-family: 'Montserrat', sans-serif;
-  outline:var(--primary-color);
+  color: white;
+  font-family: "Montserrat", sans-serif;
+  outline: var(--primary-color);
   position: absolute;
   bottom: 0.4rem;
   left: 5rem;
-  
-  
-  
 }
 .btn-dark {
-    background-color:var(--primary-color);
+  background-color: var(--primary-color);
 }
 .btn-dark-hover:hover {
-    background-color: #1F2937;
+  background-color: #1f2937;
 }
 .btn-small {
-  width:2rem;
+  width: 2rem;
   background-color: transparent;
-  color:var(--primary-color);
+  color: var(--primary-color);
   font-size: 1.5rem;
-  
 }
 .btn-remove {
   position: absolute;
   top: 1rem;
-  width:1.5rem;
+  width: 1.5rem;
   height: 1.5rem;
 }
 
@@ -161,14 +151,18 @@
 
 .wishlist-badge {
   position: absolute;
-  top:1.2rem;
-  right:2.5rem;
+  top: 1.2rem;
+  right: 2.5rem;
   width: 1.5rem;
   height: 1.5rem;
-  background-color:var(--white-color);
+  background-color: var(--white-color);
   border-radius: 50%;
   color: var(--light-grey-color);
 }
 
+.remove-badge {
+  position: absolute;
+  top: 0.2rem;
+  right: 0.2rem;
 
-
+}

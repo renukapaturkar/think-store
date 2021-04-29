@@ -5,7 +5,9 @@ import { CartContext } from "../context/cart-context";
 import axios from "axios";
 
 function ProductListing() {
-  const { cartItem, sortbyprice,sortbygenre, dispatch } = useContext(CartContext);
+  const { cartItem, sortbyprice, sortbygenre, cartId, dispatch } = useContext(
+    CartContext
+  );
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -21,8 +23,32 @@ function ProductListing() {
     })();
   }, []);
 
-  const addToCartHandler = (item) => {
-    dispatch({ type: "ADDTOCART", payload: item });
+  const addToCartHandler = async (item) => {
+    if (cartId === "") {
+      const cartResponse = await axios.post("http://localhost:3000/carts", {
+        productsArray: { _id: item._id, productId: item._id, quantity: 1 },
+      });
+
+      dispatch({
+        type: "FIND_CARTID",
+        payload: cartResponse.data.CartData._id,
+      });
+      dispatch({
+        type: "ADDTOCART",
+        payload: cartResponse.data.CartData.productsArray,
+      });
+    } else {
+      const cartResponse = await axios.post(
+        `http://localhost:3000/carts/${cartId}`,
+        {
+          productsArray: { _id: item._id, productId: item._id, quantity: 1 },
+        }
+      );
+      dispatch({
+        type: "ADDTOCART",
+        payload: cartResponse.data.CartData.productsArray,
+      });
+    }
   };
 
   const addToWishlisthandler = (item) => {
@@ -47,90 +73,88 @@ function ProductListing() {
   const filterResults = sortPrice(products, sortbyprice);
 
   const sortByGenre = (e) => {
-    
-      if(e.target.value === "allgenre"){
-        dispatch({type:"SORT_BY_GENRE", payload: e.target.value})
-      }else if(e.target.value === "fiction"){
-        dispatch({type:"SORT_BY_GENRE", payload: e.target.value})
-      }else if (e.target.value === "self help"){
-        dispatch({type:"SORT_BY_GENRE", payload: e.target.value})
-      }else if(e.target.value === "business"){
-        dispatch({type:"SORT_BY_GENRE", payload: e.target.value})
-      }
-  }
-
-  
-
-  const sortGenre = (products, sortbygenre)=> {
-    if(sortbygenre === "allgenre"){
-     return products.filter((product)=> product)
-    }else if(sortbygenre === "fiction"){
-      return products.filter((product)=> product.genre.toLowerCase() === sortbygenre)
-    }else if(sortbygenre === "self help"){
-      return products.filter((product)=> product.genre.toLowerCase() === sortbygenre)
-    }else if(sortbygenre === "business"){
-      return products.filter((product)=> product.genre.toLowerCase() === sortbygenre)
-    }else {
-      return products
+    if (e.target.value === "allgenre") {
+      dispatch({ type: "SORT_BY_GENRE", payload: e.target.value });
+    } else if (e.target.value === "fiction") {
+      dispatch({ type: "SORT_BY_GENRE", payload: e.target.value });
+    } else if (e.target.value === "self help") {
+      dispatch({ type: "SORT_BY_GENRE", payload: e.target.value });
+    } else if (e.target.value === "business") {
+      dispatch({ type: "SORT_BY_GENRE", payload: e.target.value });
     }
-  }
+  };
 
-  const genreFilter = sortGenre(filterResults, sortbygenre)
+  const sortGenre = (products, sortbygenre) => {
+    if (sortbygenre === "allgenre") {
+      return products.filter((product) => product);
+    } else if (sortbygenre === "fiction") {
+      return products.filter(
+        (product) => product.genre.toLowerCase() === sortbygenre
+      );
+    } else if (sortbygenre === "self help") {
+      return products.filter(
+        (product) => product.genre.toLowerCase() === sortbygenre
+      );
+    } else if (sortbygenre === "business") {
+      return products.filter(
+        (product) => product.genre.toLowerCase() === sortbygenre
+      );
+    } else {
+      return products;
+    }
+  };
+
+  const genreFilter = sortGenre(filterResults, sortbygenre);
 
   return (
     <div class="container">
       <div class="filter-container">
-        <div><b>Filters</b></div>
-      <div><b>Genre</b></div>
         <div>
-
+          <b>Filters</b>
+        </div>
         <div>
+          <b>Genre</b>
+        </div>
+        <div>
+          <div>
             <input
-              
               type="radio"
               id="allgenre"
               name="Genre"
               value="allgenre"
-            
-            onClick={(e)=>sortByGenre(e)}
+              onClick={(e) => sortByGenre(e)}
             />
             <label for="allgenre">All</label>
           </div>
-          
+
           <div>
             <input
-          
               type="radio"
               id="fiction"
               name="Genre"
               value="fiction"
-            
-              onClick={(e)=>sortByGenre(e)}
+              onClick={(e) => sortByGenre(e)}
             />
             <label for="fiction">Fiction</label>
           </div>
 
           <div>
             <input
-           
               type="radio"
               id="self help"
               name="Genre"
               value="self help"
-           
-              onClick={(e)=>sortByGenre(e)}
+              onClick={(e) => sortByGenre(e)}
             />
             <label for="self help">Self-Help</label>
           </div>
           <div>
             <input
-            
               type="radio"
               id="business"
               name="Genre"
               value="business"
-           
-              onClick={(e)=>sortByGenre(e)}
+              onClick={(e) => sortByGenre(e)}
             />
             <label for="business">Business</label>
           </div>
@@ -151,8 +175,8 @@ function ProductListing() {
                 <div class="img-container">
                   <img class="card-img" src={`${item.image_url}`} alt="img" />
                 </div>
-                <em>{item.title}</em>
-                <small>{item.genre}</small>
+                <h5>{item.title}</h5>
+                <small>{item.genre}, {item.author}</small>
                 <p>Rs.{item.price}</p>
                 <span>
                   <button
@@ -161,8 +185,12 @@ function ProductListing() {
                   >
                     Add to Cart
                   </button>
-                  <div class="wishlist-badge" onClick={()=>addToWishlisthandler(item)}><ion-icon class="badge" name="heart"></ion-icon></div>
-
+                  <div
+                    class="wishlist-badge"
+                    onClick={() => addToWishlisthandler(item)}
+                  >
+                    <ion-icon class="badge" name="heart"></ion-icon>
+                  </div>
                 </span>
               </span>
             );

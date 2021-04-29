@@ -2,20 +2,15 @@ export const reducerFunction = (state, action) => {
     switch(action.type){
         case "ADDTOCART":
             console.log(action.payload)
-            if(state.cartItem.some((item)=> item.id === action.payload._id)){
-                const  newArray = state.cartItem.map((item)=> {
-                    return item.id === action.payload._id ? {...item, quantity: item.quantity + 1} : item
-                });
-                return {
-                    ...state, cartItem: newArray,
-                };
-
-            }else {
-                return {
-                    ...state, cartItem: [...state.cartItem, action.payload]
+            return {
+                    ...state, cartItem: [...action.payload]
                 }
-                
+        case "FIND_CARTID":
+            console.log(action.payload)
+            return {
+                ...state, cartId : action.payload
             }
+    
                 
             
         case "WISHLIST":
@@ -23,19 +18,13 @@ export const reducerFunction = (state, action) => {
                 ...state, cartItem: [...state.cartItem, action.payload]
             }
         case "INCREASE_QUANTITY":
-            const Quantity = state.cartItem.map((item) => {
-                return item.id === action.payload ? {...item, quantity: item.quantity + 1} : item;
-            });
+            console.log(action.payload)
             return {
-                ...state, cartItem: Quantity,
+                ...state, cartItem:[...action.payload]
             };
         case "DECREASE_QUANTITY":
-            const quantityDecrease = state.cartItem.map((item) => {
-                return item.id === action.payload ? {...item, quantity: item.quantity - 1} : item;
-            });
-            const zeroQuantity = quantityDecrease.filter((item)=> item.quantity !== 0 )
             return {
-                ...state, cartItem: zeroQuantity,
+                ...state, cartItem:[...action.payload],
             };
         case "REMOVE_FROM_CART":
             const removeItem = state.cartItem.filter((item)=> item.id !== action.payload.id)
