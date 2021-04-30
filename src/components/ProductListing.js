@@ -25,7 +25,7 @@ function ProductListing() {
 
   const addToCartHandler = async (item) => {
     if (cartId === "") {
-      const cartResponse = await axios.post("http://localhost:3000/carts", {
+      const cartResponse = await axios.post("https://serene-lowlands-13656.herokuapp.com/carts", {
         productsArray: { _id: item._id, productId: item._id, quantity: 1 },
       });
 
@@ -39,7 +39,7 @@ function ProductListing() {
       });
     } else {
       const cartResponse = await axios.post(
-        `http://localhost:3000/carts/${cartId}`,
+        `https://serene-lowlands-13656.herokuapp.com/${cartId}`,
         {
           productsArray: { _id: item._id, productId: item._id, quantity: 1 },
         }

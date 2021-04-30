@@ -13,7 +13,7 @@ export function Cart() {
     const increaseQuantity = async(productId, Quantity, cartId) =>{
         console.log(Quantity)
         const response = await axios.post(
-            `http://localhost:3000/carts/${cartId}/${productId}`,
+            `https://serene-lowlands-13656.herokuapp.com/${cartId}/${productId}`,
             {
               quantity: Quantity += 1 
             })
@@ -26,7 +26,7 @@ export function Cart() {
 
     const decreaseQuantity = async(productId, Quantity, cartId)=> {
         console.log(Quantity)
-        const response = await axios.post( `http://localhost:3000/carts/${cartId}/${productId}`,            
+        const response = await axios.post( `https://serene-lowlands-13656.herokuapp.com/${cartId}/${productId}`,            
         {
             quantity: Quantity -= 1 
           })
