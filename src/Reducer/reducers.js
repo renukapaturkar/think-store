@@ -27,9 +27,9 @@ export const reducerFunction = (state, action) => {
                 ...state, cartItem:[...action.payload],
             };
         case "REMOVE_FROM_CART":
-            const removeItem = state.cartItem.filter((item)=> item.id !== action.payload.id)
+            console.log("remove payload", action.payload)
             return {
-                ...state, cartItem : removeItem
+                ...state, cartItem : [...action.payload]
             }
 
         case "SORT_BY_PRICE":

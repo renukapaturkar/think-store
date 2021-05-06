@@ -13,7 +13,7 @@ export function Cart() {
     const increaseQuantity = async(productId, Quantity, cartId) =>{
         console.log(Quantity)
         const response = await axios.post(
-            `https://serene-lowlands-13656.herokuapp.com/${cartId}/${productId}`,
+            `https://serene-lowlands-13656.herokuapp.com/carts/${cartId}/${productId}`,
             {
               quantity: Quantity += 1 
             })
@@ -26,7 +26,7 @@ export function Cart() {
 
     const decreaseQuantity = async(productId, Quantity, cartId)=> {
         console.log(Quantity)
-        const response = await axios.post( `https://serene-lowlands-13656.herokuapp.com/${cartId}/${productId}`,            
+        const response = await axios.post( `https://serene-lowlands-13656.herokuapp.com/carts/${cartId}/${productId}`,            
         {
             quantity: Quantity -= 1 
           })
@@ -36,18 +36,26 @@ export function Cart() {
         dispatch({type:"DECREASE_QUANTITY", payload: response.data.CartData.productsArray})
     }
 
+    const removeFromcart = async(productid, cartId) =>{
+      const response = await axios.delete(`https://serene-lowlands-13656.herokuapp.com/carts/${cartId}/${productid}`, 
+      {
+        productsArray: {productId : productid}
+      })
+      console.log(response)
+      dispatch({type:"REMOVE_FROM_CART", payload: response.data.CartData.productsArray})
+    }
+
 
     return (
       <div>
-        <div>
-          <h2>Total: </h2>
-        </div>
+        <div class="cart-container">
+
             <div class="card-container ">
       {
           cartItem.map((item)=> {
               return (
                   
-                      <div class="card-horizontal" key={item._id}>
+                      <div class="card card-horizontal" key={item._id}>
                             <div class="img-container img-horizontal-container"><img class="card-img" src={`${item.productId.image_url}`} alt="img"/></div>
                             <div class="content-container">
 
@@ -57,21 +65,18 @@ export function Cart() {
                             <p>Rs.{item.productId.price}</p>
                             </div>
 
-                          <div class="remove-badge"><ion-icon class="badge" name="close"></ion-icon></div>
+                          <div class="remove-badge" onClick={()=>removeFromcart(item._id, cartId)}><ion-icon class="badge" name="close"></ion-icon></div>
                           <span>
                           <button class="btn-small" onClick={()=>increaseQuantity(item._id, item.quantity, cartId)}>+</button>
-                          <span>{item.quantity}</span>
+                          <b>{item.quantity}</b>
                           <button class="btn-small" onClick={()=>decreaseQuantity(item._id, item.quantity, cartId)}>-</button>
                           </span>
                                 
                                 </div>
 
 
+                        </div>
                           
-                  
-                      
-                              
-                          </div>
 
                       
                       
@@ -80,9 +85,27 @@ export function Cart() {
               );
           })
       }
+      </div>
+
+      <div class="pricing-container">
+
+          <h4>Price Details </h4>
+          <div>
+          <span>Total MRP</span>
+          <span>0.00</span>
+          </div>
+          <div>
+          <span>Total Amount</span>
+          <span>0.00</span>
+          </div>
+          <div>
+            <button class="btn btn-dark">Place Order</button>
+          </div>
+          
+        </div>
       
       </div>
-      <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>  
+      
       </div>
   
   

@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-
+import {Link} from 'react-router-dom';
 import "../App.css";
 import { CartContext } from "../context/cart-context";
 import axios from "axios";
@@ -39,7 +39,7 @@ function ProductListing() {
       });
     } else {
       const cartResponse = await axios.post(
-        `https://serene-lowlands-13656.herokuapp.com/${cartId}`,
+        `https://serene-lowlands-13656.herokuapp.com/carts/${cartId}`,
         {
           productsArray: { _id: item._id, productId: item._id, quantity: 1 },
         }
@@ -71,6 +71,14 @@ function ProductListing() {
   };
 
   const filterResults = sortPrice(products, sortbyprice);
+
+  const presentInCart = (productId)=> {
+    const ItemInCart = cartItem.find((item)=> item._id === productId);
+    if(ItemInCart){
+      return true;
+    }
+    return false; 
+  }
 
   const sortByGenre = (e) => {
     if (e.target.value === "allgenre") {
@@ -179,12 +187,21 @@ function ProductListing() {
                 <small>{item.genre}, {item.author}</small>
                 <p>Rs.{item.price}</p>
                 <span>
-                  <button
-                    class="btn btn-dark btn-dark-hover"
-                    onClick={() => addToCartHandler(item)}
-                  >
-                    Add to Cart
-                  </button>
+                  {
+                    presentInCart(item._id) === false ? (
+                      <button
+                      class="btn btn-absolute btn-dark"
+                      onClick={() => addToCartHandler(item)}
+                    >
+                      Add to Cart
+                    </button>
+                    ):
+                    (
+                      <Link to='/cart'
+                      class={`link btn btn-a btn-absolute btn-dark`}>Go To Cart</Link>
+                    )
+                  }
+
                   <div
                     class="wishlist-badge"
                     onClick={() => addToWishlisthandler(item)}
@@ -197,7 +214,7 @@ function ProductListing() {
           })}
         </div>
       </div>
-      <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+
     </div>
   );
 }

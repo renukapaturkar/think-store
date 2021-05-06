@@ -21,7 +21,7 @@ export function Wishlist() {
                            <em>{item.title}</em>
                             <p>Rs.{item.price}</p>
                           <span>
-                          <button class="btn btn-dark btn-dark-hover">Move to Cart</button>
+                          <button class="btn btn-dark">Move to Cart</button>
                           
                           </span>
                       </span>

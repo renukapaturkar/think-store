@@ -1,38 +1,38 @@
-import React from 'react';
-import './App.css';
-import {useState} from 'react';
-import ProductListing from './components/ProductListing';
-import Cart from './components/Cart';
-import Wishlist from './components/Wishlist';
-
-
-
-
+import React from "react";
+import "./App.css";
+import { Routes, Route, Link } from "react-router-dom";
+import ProductListing from "./components/ProductListing";
+import Cart from "./components/Cart";
+import Wishlist from "./components/Wishlist";
 
 function App() {
-  const [route, setRoute] = useState("Products");
-  
   return (
     <div className="App">
-    <div class="app-body">
-    <nav class="navigation">
-      <span><a  class="link heading" href="#">
-        Elysian
-      </a></span>
-      <ul>
-        
-          <li class="list-non-bullet list-inline" onClick={()=> setRoute("Products") }>Products</li>
-        
-          <li class="list-non-bullet list-inline" onClick={()=> setRoute("Cart") }>Cart</li>
-        
-          <li class="list-non-bullet list-inline"  onClick={()=> setRoute("Wishlist") }>Wishlist</li>
-        
-      </ul>
-    </nav>
-    {route === "Products" && <ProductListing/>}
-    {route === "Cart" && <Cart/>}
-    {route === "Wishlist" && <Wishlist/>}
-    </div>
+      <div class="app-body">
+        <nav class="navigation">
+          <span>
+
+            <Link class="link heading" to='/'>Elysian</Link>
+          </span>
+          <span>
+            {/* <Link class="link list-inline" to="/">
+              Products
+            </Link> */}
+            <Link class="link list-inline" to="/cart">
+            <ion-icon class="badge" name="cart-outline"></ion-icon>
+            </Link>
+            <Link class="link list-inline" to="/wishlist">
+            <ion-icon class="badge" name="heart-outline"></ion-icon>
+            </Link>
+          </span>
+        </nav>
+
+        <Routes>
+          <Route path="/" element={<ProductListing />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/wishlist" element={<Wishlist />} />
+        </Routes>
+      </div>
     </div>
   );
 }

@@ -1,7 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Allura&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
 :root {
   --primary-color: #475569;
   --white-color: #f8fafc;
   --light-grey-color: #e5e7eb;
+}
+body {
+  font-family: 'Open Sans', sans-serif;
 }
 
 .App {
@@ -13,8 +19,8 @@
 }
 .filter-container {
   flex-direction: column;
-  width: 13rem;
-  padding: 2rem;
+  width: 15rem;
+  padding: 1rem;
   padding-top: 5rem;
 }
 
@@ -47,6 +53,7 @@
   font-size: 32px;
   padding: 1rem;
   color: var(--white-color);
+  font-family: 'Allura', cursive;
 }
 
 .navigation {
@@ -61,6 +68,22 @@
   z-index: 1;
 }
 
+.cart-container {
+  display: flex;
+  padding: 1rem;
+}
+
+.card-container{
+  flex: 3;
+  flex-wrap:wrap;
+}
+
+.pricing-container {
+  flex: 1;
+  padding: 1rem;
+}
+
+
 .card-container {
   display: flex;
   text-align: center;
@@ -71,13 +94,15 @@
 .card {
   display: flex;
   flex-direction: column;
-  border: 1px solid #d1d5db;
+  /* border: 1px solid #d1d5db; */
+  border: none;
   width: 19rem;
   height: 27rem;
   padding: 0.5rem;
   margin: 1rem;
   justify-content: start;
   position: relative;
+ 
 }
 .card h5, p {
   margin: 0;
@@ -87,6 +112,7 @@
   flex-direction: row;
   width: 35rem;
   height: 13rem;
+  border: 0.1rem solid var(--light-grey-color);
 
 }
 
@@ -115,32 +141,44 @@
   height: 2.5rem;
   margin: 0.2rem;
   font-weight: normal;
-  font-size: 0.9rem;
-  border: none;
-  color: white;
+  text-align: center;
+  font-size: 1rem;
+  border: 0.1rem solid var(--primary-color);
+  color: var(--white-color);
   font-family: "Montserrat", sans-serif;
   outline: var(--primary-color);
+
+}
+.btn-a{
+ height: 1.3rem;
+ width: 9.5rem;
+}
+
+.btn-absolute{
   position: absolute;
   bottom: 0.4rem;
   left: 5rem;
 }
+
 .btn-dark {
-  background-color: var(--primary-color);
+  background-color: transparent;
+  color: var(--primary-color);
 }
-.btn-dark-hover:hover {
-  background-color: #1f2937;
-}
+
 .btn-small {
   width: 2rem;
   background-color: transparent;
   color: var(--primary-color);
   font-size: 1.5rem;
+  margin: 0.4rem;
 }
+
 .btn-remove {
   position: absolute;
   top: 1rem;
   width: 1.5rem;
   height: 1.5rem;
+  color: var(--primary-color);
 }
 
 .badge {
@@ -166,3 +204,4 @@
   right: 0.2rem;
 
 }
+
