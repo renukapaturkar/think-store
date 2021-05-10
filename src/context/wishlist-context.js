@@ -3,15 +3,15 @@ import { reducerFunction } from "../Reducer/reducers";
 
 const wishlistInitialValue = {
   wishList: [],
-  wishlistId: null,
+  wishlistId: "",
 };
 
 export const WishListContext = createContext();
-
-export const Wishlistprovider = ({ children }) => {
-  const [state, dispatch] = useReducer(reducerFunction, wishlistInitialValue);
+ 
+export const WishlistProvider = ({ children }) => {
+  const [state, WishlistDispatch] = useReducer(reducerFunction, wishlistInitialValue);
   return (
-    <WishListContext.Provider value={{ ...state, dispatch }}>
+    <WishListContext.Provider value={{ ...state,WishlistDispatch }}>
       {children}
     </WishListContext.Provider>
   );

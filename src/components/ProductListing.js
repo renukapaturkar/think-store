@@ -2,12 +2,16 @@ import React, { useContext, useState, useEffect } from "react";
 import {Link} from 'react-router-dom';
 import "../App.css";
 import { CartContext } from "../context/cart-context";
+import {WishListContext} from "../context/wishlist-context";
 import axios from "axios";
+import {AddToWishlist} from "../api/wishlistApi"
+import {AddToCart} from "../api/CartApi";
 
 function ProductListing() {
   const { cartItem, sortbyprice, sortbygenre, cartId, dispatch } = useContext(
     CartContext
   );
+  const {wishlistId, WishlistDispatch} = useContext(WishListContext);
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -23,37 +27,8 @@ function ProductListing() {
     })();
   }, []);
 
-  const addToCartHandler = async (item) => {
-    if (cartId === "") {
-      const cartResponse = await axios.post("https://serene-lowlands-13656.herokuapp.com/carts", {
-        productsArray: { _id: item._id, productId: item._id, quantity: 1 },
-      });
 
-      dispatch({
-        type: "FIND_CARTID",
-        payload: cartResponse.data.CartData._id,
-      });
-      dispatch({
-        type: "ADDTOCART",
-        payload: cartResponse.data.CartData.productsArray,
-      });
-    } else {
-      const cartResponse = await axios.post(
-        `https://serene-lowlands-13656.herokuapp.com/carts/${cartId}`,
-        {
-          productsArray: { _id: item._id, productId: item._id, quantity: 1 },
-        }
-      );
-      dispatch({
-        type: "ADDTOCART",
-        payload: cartResponse.data.CartData.productsArray,
-      });
-    }
-  };
 
-  const addToWishlisthandler = (item) => {
-    dispatch({ type: "WISHLIST", payload: item });
-  };
 
   const sortByPrice = (e) => {
     if (e.target.value === "lowtohigh") {
@@ -131,6 +106,7 @@ function ProductListing() {
               name="Genre"
               value="allgenre"
               onClick={(e) => sortByGenre(e)}
+              
             />
             <label for="allgenre">All</label>
           </div>
@@ -191,7 +167,7 @@ function ProductListing() {
                     presentInCart(item._id) === false ? (
                       <button
                       class="btn btn-absolute btn-dark"
-                      onClick={() => addToCartHandler(item)}
+                      onClick={() => AddToCart(item, cartId, dispatch)}
                     >
                       Add to Cart
                     </button>
@@ -204,7 +180,7 @@ function ProductListing() {
 
                   <div
                     class="wishlist-badge"
-                    onClick={() => addToWishlisthandler(item)}
+                    onClick={() => AddToWishlist(item,wishlistId,WishlistDispatch)}
                   >
                     <ion-icon class="badge" name="heart"></ion-icon>
                   </div>

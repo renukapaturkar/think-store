@@ -1,10 +1,14 @@
 import React, { useContext} from 'react';
 import '../App.css';
 import { CartContext } from '../context/cart-context';
+import {WishListContext} from '../context/wishlist-context';
 
 
 export function Wishlist() {
-    const { cartItem } = useContext(CartContext);
+    
+    const {wishList, wishlistId} = useContext(WishListContext);
+
+
     return (
       <div>
           <div>
@@ -13,13 +17,13 @@ export function Wishlist() {
         
             <div class="card-container">
       {
-          cartItem.map((item)=> {
+          wishList.map((item)=> {
               return (
                   
                       <span class="card">
-                           <div class="img-container"><img class="card-img" src={`${item.image_url}`} alt="img"/></div>
-                           <em>{item.title}</em>
-                            <p>Rs.{item.price}</p>
+                           <div class="img-container"><img class="card-img" src={`${item.productId.image_url}`} alt="img"/></div>
+                           <em>{item.productId.title}</em>
+                            <p>Rs.{item.productId.price}</p>
                           <span>
                           <button class="btn btn-dark">Move to Cart</button>
                           
