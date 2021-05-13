@@ -5,6 +5,7 @@ import ProductListing from "./components/ProductListing";
 import Cart from "./components/Cart";
 import Wishlist from "./components/Wishlist";
 import { NavigationBar } from "./components/NavigationBar";
+import { ProductDetails } from "./components/ProductDetails";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/" element={<ProductListing />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/wishlist" element={<Wishlist />} />
+        <Route path=":id" element={<ProductDetails/>}/>
       </Routes>
     </div>
   );

@@ -24,6 +24,8 @@ export const AddToWishlist = async (item, wishlistId, WishlistDispatch) => {
         wishlistArray: { _id: item._id, productId: item._id },
       }
     );
+    console.log(wishlistId)
+    console.log(wishlistResponse)
     WishlistDispatch({
       type: "ADD_TO_WISHLIST",
       payload: wishlistResponse.data.WishlistData.wishlistArray,

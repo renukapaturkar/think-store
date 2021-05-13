@@ -42,6 +42,12 @@ export const reducerFunction = (state, action) => {
         ...state,
         cartItem: [...action.payload],
       };
+    case "REMOVE_FROM_WISHLIST":
+      console.log("remove from wishlist", action.payload);
+      return{
+        ...state,
+        wishList: [...action.payload]
+      }
 
     case "SORT_BY_PRICE":
       return {

@@ -193,10 +193,17 @@ body {
   right: 2.5rem;
   width: 1.5rem;
   height: 1.5rem;
-  background-color: var(--white-color);
+  background-color:var(--white-color);
   border-radius: 50%;
   color: var(--light-grey-color);
 }
+.badge-liked {
+  color: #B91C1C;
+}
+.badge-unliked {
+  color: var(--white-color);
+}
+
 
 .remove-badge {
   position: absolute;
