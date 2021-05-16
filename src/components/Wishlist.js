@@ -1,13 +1,15 @@
 import React, { useContext} from 'react';
 import '../App.css';
+import {Link} from 'react-router-dom';
 import {CartContext} from '../context/cart-context';
 import {WishListContext} from '../context/wishlist-context';
 import {AddToCart} from '../api/CartApi';
 import { RemoveFromWishlist } from '../api/RemoveFromWishlist';
+import { presentInCart } from "../utils/cartUtils";
 
 
 export function Wishlist() {
-    const {cartId, dispatch} = useContext(CartContext);
+    const {cartId,cartItem, dispatch} = useContext(CartContext);
     const {wishList, wishlistId, WishlistDispatch} = useContext(WishListContext);
 
 
@@ -29,7 +31,18 @@ export function Wishlist() {
                             <b>&#8377; {item.productId.price}</b>
                             <div class="remove-badge" onClick={()=>RemoveFromWishlist(item, wishlistId, WishlistDispatch)}><ion-icon class="badge" name="close"></ion-icon></div>
                           <span>
-                          <button class="btn btn-dark" onClick={()=>AddToCart(item,cartId, dispatch)}>Move to Cart</button>
+                          {presentInCart(item._id, cartItem) === false ? (
+                <button
+                  class="btn btn-dark"
+                  onClick={() => AddToCart(item, cartId, dispatch)}
+                >
+                  Add to Cart
+                </button>
+              ) : (
+                <Link to="/cart" class={`link btn btn-a btn-large btn-dark`}>
+                  Go To Cart
+                </Link>
+              )}
                           
                           </span>
                       </span>
