@@ -2,7 +2,7 @@ import React from 'react';
 import '../App.css';
 import {useContext} from 'react';
 import { CartContext } from '../context/cart-context';
-import {sortByPrice,sortPrice, sortByGenre, sortGenre } from '../utils/sort';
+import {sortByPrice} from '../utils/sort';
 
 export const SortBy = () => {
     const {dispatch} = useContext(CartContext);

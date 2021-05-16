@@ -18,9 +18,26 @@
     width: 25rem;
     height:33rem;
     align-self: center;
-    background-color: white;
+    position: relative;
 
 }
+
+.wishlist-icon{
+    width:2rem;
+    height:2rem;
+    position: absolute;
+    top: 0.3rem;
+    right: 0.3rem;
+    background-color: var(--white-color);
+    border-radius: 50%;
+}
+.badge-lg {
+    width: 2rem;
+    height:2rem;
+    text-align: center;
+}
+
+
 
 .img-detail {
     width: 100%;
@@ -28,6 +45,8 @@
 }
 
 .details-container {
+    display:flex;
+    flex-direction: column;
     flex:3;
     padding:1rem;
     margin: 1rem;
@@ -35,5 +54,33 @@
 
 .bookformat-container {
     display: flex;
-    flex-direction: row;
+    margin:3rem;
+    margin-left: 0rem;
+    flex-wrap: wrap;
+    height:8rem;
+    
+    
+}
+
+.bookformat {
+    border: 0.1rem solid black;
+    padding:0.8rem;
+    margin:0.8rem;
+}
+
+.bookformat:hover {
+    border: 0.18rem solid var(--green-color);
+}
+
+.btn-large {
+    width:20rem;
+    height: 3rem;
+    border-radius: 0;
+    font-size: 1rem;
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    padding:1rem;
+    padding-left:5rem;
+    padding-right:5rem;
+
 }

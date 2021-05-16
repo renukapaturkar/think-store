@@ -10,9 +10,9 @@ export const UseProductDetails = (id) => {
         try{
             const {data, status} = await axios.get(`https://serene-lowlands-13656.herokuapp.com/products/${id}`);
             
-                console.log(data.data.image_url)
-                // setProductDetail({productData})
+                
                 if(status === 200){
+                   
                     setProductDetail(data.data)
                 }else {
                     console.log("something went wrong!")

@@ -1,32 +1,32 @@
 export const reducerFunction = (state, action) => {
   switch (action.type) {
+    case "DATA_FROM_DATABASE":
+      return {
+        ...state,
+        products: [...action.payload],
+      };
     case "ADDTOCART":
-      console.log(action.payload);
       return {
         ...state,
         cartItem: [...action.payload],
       };
     case "FIND_CARTID":
-      console.log(action.payload);
       return {
         ...state,
         cartId: action.payload,
       };
     case "FIND_WISHLISTID":
-      console.log("find wishlist id", action.payload);
       return {
         ...state,
         wishlistId: action.payload,
       };
 
     case "ADD_TO_WISHLIST":
-      console.log(action.payload);
       return {
         ...state,
         wishList: [...action.payload],
       };
     case "INCREASE_QUANTITY":
-      console.log(action.payload);
       return {
         ...state,
         cartItem: [...action.payload],
@@ -37,17 +37,15 @@ export const reducerFunction = (state, action) => {
         cartItem: [...action.payload],
       };
     case "REMOVE_FROM_CART":
-      console.log("remove payload", action.payload);
       return {
         ...state,
         cartItem: [...action.payload],
       };
     case "REMOVE_FROM_WISHLIST":
-      console.log("remove from wishlist", action.payload);
-      return{
+      return {
         ...state,
-        wishList: [...action.payload]
-      }
+        wishList: [...action.payload],
+      };
 
     case "SORT_BY_PRICE":
       return {
@@ -56,11 +54,21 @@ export const reducerFunction = (state, action) => {
       };
 
     case "SORT_BY_GENRE":
-      console.log(action.payload);
       return {
         ...state,
         sortbygenre: action.payload,
       };
+
+    case "TOTAL_CART_PRICE":
+      const totalPrice = state.cartItem.reduce((acc, cartItem) => {
+        const totalItemPrice = cartItem.productId.price * cartItem.quantity;
+        return acc + totalItemPrice;
+      }, 0);
+      return {
+        ...state,
+        cartTotal: totalPrice,
+      };
+
 
     default:
       return state;

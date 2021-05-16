@@ -17,6 +17,7 @@ export const AddToCart = async (item, cartId, dispatch) => {
       type: "ADDTOCART",
       payload: cartResponse.data.CartData.productsArray,
     });
+
   } else {
     const cartResponse = await axios.post(
       `https://serene-lowlands-13656.herokuapp.com/carts/${cartId}`,
@@ -28,5 +29,6 @@ export const AddToCart = async (item, cartId, dispatch) => {
       type: "ADDTOCART",
       payload: cartResponse.data.CartData.productsArray,
     });
+
   }
 };

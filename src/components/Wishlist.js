@@ -24,8 +24,9 @@ export function Wishlist() {
                   
                       <span class="card" key={item.productId._id}>
                            <div class="img-container"><img class="card-img" src={`${item.productId.image_url}`} alt="img"/></div>
-                           <em>{item.productId.title}</em>
-                            <p>Rs.{item.productId.price}</p>
+                           <b>{item.productId.title}</b>
+                           <em>{item.productId.author}, {item.productId.genre}</em>
+                            <b>&#8377; {item.productId.price}</b>
                             <div class="remove-badge" onClick={()=>RemoveFromWishlist(item, wishlistId, WishlistDispatch)}><ion-icon class="badge" name="close"></ion-icon></div>
                           <span>
                           <button class="btn btn-dark" onClick={()=>AddToCart(item,cartId, dispatch)}>Move to Cart</button>
