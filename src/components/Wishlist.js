@@ -39,7 +39,7 @@ export function Wishlist() {
                   Add to Cart
                 </button>
               ) : (
-                <Link to="/cart" class={`link btn btn-a btn-large btn-dark`}>
+                <Link to="/cart" class={`link btn btn-a btn-dark`}>
                   Go To Cart
                 </Link>
               )}
