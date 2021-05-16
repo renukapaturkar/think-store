@@ -1,4 +1,5 @@
 import axios from "axios";
+import { toastText } from "../utils/toast";
 
 export const AddToWishlist = async (item, wishlistId, WishlistDispatch) => {
   if (wishlistId === "") {
@@ -17,6 +18,7 @@ export const AddToWishlist = async (item, wishlistId, WishlistDispatch) => {
       type: "ADD_TO_WISHLIST",
       payload: wishlistResponse.data.WishlistData.wishlistArray,
     });
+    toastText("Added to Wishlist!");
   } else {
     const wishlistResponse = await axios.post(
       `https://serene-lowlands-13656.herokuapp.com/wishlists/${wishlistId}`,
@@ -30,5 +32,6 @@ export const AddToWishlist = async (item, wishlistId, WishlistDispatch) => {
       type: "ADD_TO_WISHLIST",
       payload: wishlistResponse.data.WishlistData.wishlistArray,
     });
+    toastText("Added to Wishlist!");
   }
 };

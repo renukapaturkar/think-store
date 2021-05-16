@@ -8,6 +8,7 @@ const initialValue = {
   sortbygenre: "all",
   cartId: "",
   cartTotal: 0,
+  loader: false
 };
 
 

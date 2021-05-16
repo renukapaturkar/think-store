@@ -68,6 +68,11 @@ export const reducerFunction = (state, action) => {
         ...state,
         cartTotal: totalPrice,
       };
+    case "SHOW_LOADER":
+      return {
+        ...state,
+        loader: !state.loader
+      }
 
 
     default:

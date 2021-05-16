@@ -1,5 +1,7 @@
 import React from "react";
 import "./App.css";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
 import { Routes, Route} from "react-router-dom";
 import ProductListing from "./components/ProductListing";
 import Cart from "./components/Cart";
@@ -17,6 +19,7 @@ function App() {
         <Route path="/wishlist" element={<Wishlist />} />
         <Route path=":id" element={<ProductDetails/>}/>
       </Routes>
+      <ToastContainer/> 
     </div>
   );
 }

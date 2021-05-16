@@ -149,6 +149,8 @@ body {
 .btn-a{
  height: 1.3rem;
  width: 10rem;
+
+
 }
 
 .btn-absolute{
@@ -160,6 +162,10 @@ body {
 .btn-dark {
   background-color: transparent;
   color: var(--primary-color);
+}
+.btn-dark-hover {
+  background-color: var(--primary-color);
+  color: var(--white-color);
 }
 
 .btn-small {

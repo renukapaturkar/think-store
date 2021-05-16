@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { toastText } from "../utils/toast";
 
 
 export const RemoveFromWishlist = async(item,wishlistId, WishlistDispatch) => {
@@ -7,5 +8,6 @@ export const RemoveFromWishlist = async(item,wishlistId, WishlistDispatch) => {
         wishlistArray: {productId: item._id}
     });
     console.log(response)
-    WishlistDispatch({type: "REMOVE_FROM_WISHLIST", payload: response.data.WishlistData.wishlistArray})
+    WishlistDispatch({type: "REMOVE_FROM_WISHLIST", payload: response.data.WishlistData.wishlistArray});
+    toastText("Removed from Wishlist");
 }

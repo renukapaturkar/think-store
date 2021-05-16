@@ -9,6 +9,7 @@ import { Filters } from "./Filters";
 import { sortPrice, sortGenre } from "../utils/sort";
 import { SortBy } from "./SortBy";
 import { wishlistDataHandler, presentInWishlist } from "../utils/wishlistUtils";
+import {LoaderSpinner} from "./LoaderSpinner";
 
 function ProductListing() {
   const {
@@ -17,6 +18,7 @@ function ProductListing() {
     sortbyprice,
     sortbygenre,
     cartId,
+    loader,
     dispatch,
   } = useContext(CartContext);
   const { wishlistId, wishList, WishlistDispatch } = useContext(
@@ -26,6 +28,7 @@ function ProductListing() {
   useEffect(() => {
     (async function () {
       try {
+       dispatch({type: "SHOW_LOADER"})
         const response = await axios.get(
           "https://serene-lowlands-13656.herokuapp.com/products"
         );
@@ -33,6 +36,8 @@ function ProductListing() {
           type: "DATA_FROM_DATABASE",
           payload: response.data.product,
         });
+        dispatch({type: "SHOW_LOADER"})
+        
       } catch (error) {
         console.log("error");
       }
@@ -44,7 +49,9 @@ function ProductListing() {
   const genreFilter = sortGenre(filterResults, sortbygenre);
 
   return (
+
     <div class="page-container">
+      
     <SortBy />
     <div class="container">
       <Filters />
@@ -52,6 +59,7 @@ function ProductListing() {
       <div class="main-container">
         
         <div class="card-container">
+        {loader && <LoaderSpinner/>}
           {genreFilter.map((item) => {
             return (
               <span class="card" key={item._id}>

@@ -9,16 +9,18 @@ import { WishListContext } from "../context/wishlist-context";
 import { wishlistDataHandler, presentInWishlist } from "../utils/wishlistUtils";
 import { AddToCart } from "../api/CartApi";
 import { presentInCart } from "../utils/cartUtils";
+import {LoaderSpinner} from './LoaderSpinner';
 
 export const ProductDetails = () => {
   const { id } = useParams();
   const productDetail = UseProductDetails(id);
-  const { products, cartItem, cartId, dispatch } = useContext(CartContext);
+  const { products, cartItem, cartId, dispatch, loader } = useContext(CartContext);
   const { wishlistId, wishList, WishlistDispatch } = useContext(
     WishListContext
   );
   return (
     <div>
+      {loader && <LoaderSpinner/>}
       {productDetail.length !== 0 && (
         <div class="productdetail-container">
           <div class="imagedetail-container">
@@ -79,14 +81,14 @@ export const ProductDetails = () => {
             <div>
               {presentInCart(productDetail._id, cartItem) === false ? (
                 <button
-                  class="btn btn-large btn-dark"
+                  class="btn btn-large btn-dark btn-dark-hover"
                   onClick={() => AddToCart(productDetail, cartId, dispatch)}
                 >
                   Add to Cart
                 </button>
               ) : (
-                <Link to="/cart" class={`link btn btn-a btn-large btn-dark`}>
-                  Go To Cart
+                <Link to="/cart">
+                  <button class="btn btn-large btn-dark btn-dark-hover"> Go To Cart</button>
                 </Link>
               )}
             </div>

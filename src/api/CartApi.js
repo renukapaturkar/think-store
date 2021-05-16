@@ -1,4 +1,5 @@
 import axios from "axios";
+import { toastText } from "../utils/toast";
 
 export const AddToCart = async (item, cartId, dispatch) => {
   if (cartId === "") {
@@ -17,6 +18,7 @@ export const AddToCart = async (item, cartId, dispatch) => {
       type: "ADDTOCART",
       payload: cartResponse.data.CartData.productsArray,
     });
+    toastText("Added to Cart!");
 
   } else {
     const cartResponse = await axios.post(
@@ -29,6 +31,7 @@ export const AddToCart = async (item, cartId, dispatch) => {
       type: "ADDTOCART",
       payload: cartResponse.data.CartData.productsArray,
     });
+    toastText("Added to Cart!");
 
   }
 };

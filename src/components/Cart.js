@@ -3,6 +3,7 @@ import "../App.css";
 import "../css/cart.css";
 import { CartContext } from "../context/cart-context";
 import axios from "axios";
+import { toastText } from "../utils/toast";
 
 export function Cart() {
   const { cartItem, cartId, cartTotal, dispatch } = useContext(CartContext);
@@ -53,6 +54,7 @@ export function Cart() {
       type: "REMOVE_FROM_CART",
       payload: response.data.CartData.productsArray,
     });
+    toastText("Added to Wishlist!");
   };
 
   return (

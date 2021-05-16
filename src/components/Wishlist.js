@@ -33,14 +33,14 @@ export function Wishlist() {
                           <span>
                           {presentInCart(item._id, cartItem) === false ? (
                 <button
-                  class="btn btn-dark"
+                  class="btn btn-dark btn-dark-hover"
                   onClick={() => AddToCart(item, cartId, dispatch)}
                 >
                   Add to Cart
                 </button>
               ) : (
-                <Link to="/cart" class={`link btn btn-a btn-dark`}>
-                  Go To Cart
+                <Link to="/cart">
+                 <button class="btn btn-dark btn-=dark-hover"> Go To Cart</button>
                 </Link>
               )}
                           
