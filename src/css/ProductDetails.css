@@ -63,6 +63,7 @@
 }
 
 .bookformat {
+    height:2rem;
     border: 0.1rem solid black;
     padding:0.8rem;
     margin:0.8rem;
