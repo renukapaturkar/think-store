@@ -6,16 +6,17 @@ export const AddToCart = async (item, cartId, dispatch) => {
     const cartResponse = await axios.post(
       "https://serene-lowlands-13656.herokuapp.com/carts",
       {
-        productsArray: { _id: item._id, productId: item._id, quantity: 1 },
+        productsArray: { _id: item._id, quantity: 1 },
       }
     );
+    console.log("cartID", cartResponse.data.CartData._id)
 
     dispatch({
       type: "FIND_CARTID",
       payload: cartResponse.data.CartData._id,
     });
     dispatch({
-      type: "ADDTOCART",
+      type: "ADD_TO_CART",
       payload: cartResponse.data.CartData.productsArray,
     });
     toastText("Added to Cart!");
@@ -24,11 +25,11 @@ export const AddToCart = async (item, cartId, dispatch) => {
     const cartResponse = await axios.post(
       `https://serene-lowlands-13656.herokuapp.com/carts/${cartId}`,
       {
-        productsArray: { _id: item._id, productId: item._id, quantity: 1 },
+        productsArray: { _id: item._id, quantity: 1 },
       }
     );
     dispatch({
-      type: "ADDTOCART",
+      type: "ADD_TO_CART",
       payload: cartResponse.data.CartData.productsArray,
     });
     toastText("Added to Cart!");

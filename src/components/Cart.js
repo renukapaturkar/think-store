@@ -4,57 +4,97 @@ import "../css/cart.css";
 import { CartContext } from "../context/cart-context";
 import axios from "axios";
 import { toastText } from "../utils/toast";
+import { useAuth } from "../context/AuthProvider";
 
 export function Cart() {
   const { cartItem, cartId, cartTotal, dispatch } = useContext(CartContext);
+  const {token} = useAuth();
+  console.log(token)
+  console.log("cartId", cartId)
 
-  useEffect(() => {
-    dispatch({ type: "TOTAL_CART_PRICE" });
-  }, [cartItem]);
+
+useEffect(()=> {
+  if(token) {
+    (async function (){
+      const getUserCartData = await axios.get('https://serene-lowlands-13656.herokuapp.com/carts')
+      if(getUserCartData.status === 200 ){
+        console.log(getUserCartData)
+        dispatch({type: "FIND_CARTID", payload: getUserCartData.data.CartData._id})
+        dispatch({type: "GET_USER_CART_DATA", payload: getUserCartData?.data.CartData.productsArray})
+        dispatch({type: "TOTAL_CART_PRICE"})
+      }
+
+      
+      
+    })()
+
+
+
+  }
+
+}, [token])
+
+
+
 
   const increaseQuantity = async (productId, Quantity, cartId) => {
+    console.log("productId",productId,"cartId", cartId)
+
+    const q = Quantity += 1
+    console.log(q)
     const response = await axios.post(
       `https://serene-lowlands-13656.herokuapp.com/carts/${cartId}/${productId}`,
       {
-        quantity: (Quantity += 1),
+        quantity: q,
       }
     );
+    
 
     dispatch({
       type: "INCREASE_QUANTITY",
       payload: response.data.CartData.productsArray,
     });
+    dispatch({type: "TOTAL_CART_PRICE"})
   };
 
   const decreaseQuantity = async (productId, Quantity, cartId) => {
+    
     if (Quantity > 1) {
+      const q = Quantity -= 1;
       const response = await axios.post(
         `https://serene-lowlands-13656.herokuapp.com/carts/${cartId}/${productId}`,
         {
-          quantity: (Quantity -= 1),
+          quantity: q,
         }
       );
+     
 
       dispatch({
         type: "DECREASE_QUANTITY",
         payload: response.data.CartData.productsArray,
       });
+      dispatch({type: "TOTAL_CART_PRICE"})
     }
   };
 
-  const removeFromcart = async (productid, cartId) => {
+  const removeFromCart = async (productid, cartId) => {
     const response = await axios.delete(
       `https://serene-lowlands-13656.herokuapp.com/carts/${cartId}/${productid}`,
       {
-        productsArray: { productId: productid },
+        productsArray: {_id: productid } 
       }
     );
-    console.log(response);
-    dispatch({
-      type: "REMOVE_FROM_CART",
-      payload: response.data.CartData.productsArray,
-    });
-    toastText("Added to Wishlist!");
+    
+    if(response.status === 200){
+      dispatch({
+        type: "REMOVE_FROM_CART",
+        payload: response?.data.CartData.productsArray,
+      });
+      dispatch({type: "TOTAL_CART_PRICE"})
+      toastText("Removed from cart");
+
+    }
+
   };
 
   return (
@@ -63,21 +103,21 @@ export function Cart() {
         <div class="card-container ">
           {cartItem.map((item) => {
             return (
-              <div class="card card-horizontal" key={item._id}>
+              <div class="card card-horizontal" key={item._id._id}>
                 <div class="img-container img-horizontal-container">
                   <img
                     class="card-img"
-                    src={`${item.productId.image_url}`}
+                    src={`${item._id.image_url}`}
                     alt="img"
                   />
                 </div>
                 <div class="content-container">
                   <div>
-                    <div><h4>{item.productId.title}</h4></div>
+                    <div><h4>{item._id.title}</h4></div>
                     <div><em>
-                    {item.productId.author}, {item.productId.genre}
+                    {item._id.author}, {item._id.genre}
                     </em></div>
-                    <div><b>&#8377; {`${item.productId.price * item.quantity}`}</b></div>
+                    <div><b>&#8377; {`${item._id.price * item.quantity}`}</b></div>
                   </div>
 
 
@@ -85,7 +125,7 @@ export function Cart() {
                     <button
                       class="btn-small"
                       onClick={() =>
-                        increaseQuantity(item._id, item.quantity, cartId)
+                        increaseQuantity(item._id._id, item.quantity, cartId)
                       }
                     >
                       +
@@ -94,14 +134,14 @@ export function Cart() {
                     <button
                       class="btn-small"
                       onClick={() =>
-                        decreaseQuantity(item._id, item.quantity, cartId)
+                        decreaseQuantity(item._id._id, item.quantity, cartId)
                       }
                     >
                       -
                     </button>
                     <span> | </span>
                     <span> 
-                   <span class="remove-button" onClick={() => removeFromcart(item._id, cartId)}>Remove</span>
+                   <span class="remove-button" onClick={() => removeFromCart(item._id._id, cartId)}>Remove</span>
                   </span>
                   </span>
                 </div>

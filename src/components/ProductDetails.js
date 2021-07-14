@@ -1,23 +1,29 @@
 import React, { useContext } from "react";
 import "../css/ProductDetails.css";
 import "../App.css";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { UseProductDetails } from "../Hooks/UseProductDetails";
 import { CartContext } from "../context/cart-context";
 import { WishListContext } from "../context/wishlist-context";
-import { wishlistDataHandler, presentInWishlist } from "../utils/wishlistUtils";
+import { presentInWishlist, wishlistAuth} from "../utils/wishlistUtils";
 import { AddToCart } from "../api/CartApi";
-import { presentInCart } from "../utils/cartUtils";
+import { cartAuth, presentInCart } from "../utils/cartUtils";
 import {LoaderSpinner} from './LoaderSpinner';
+import { useAuth } from "../context/AuthProvider";
 
 export const ProductDetails = () => {
+  const {token} = useAuth();
+  const navigate = useNavigate();
   const { id } = useParams();
   const productDetail = UseProductDetails(id);
   const { products, cartItem, cartId, dispatch, loader } = useContext(CartContext);
   const { wishlistId, wishList, WishlistDispatch } = useContext(
     WishListContext
   );
+  
+
+
   return (
     <div>
       {loader && <LoaderSpinner/>}
@@ -37,14 +43,9 @@ export const ProductDetails = () => {
                   wishList,
                   products
                 )}`}
-                onClick={() =>
-                  wishlistDataHandler(
-                    productDetail,
-                    wishList,
-                    wishlistId,
-                    WishlistDispatch
-                  )
-                }
+                // onClick={() =>
+                //     wishlistAuth((token,navigate,productDetail,wishList,wishlistId,WishlistDispatch))
+                // }
               >
                 <ion-icon class="badge-lg" name="heart"></ion-icon>
               </div>
@@ -82,7 +83,7 @@ export const ProductDetails = () => {
               {presentInCart(productDetail._id, cartItem) === false ? (
                 <button
                   class="btn btn-large btn-dark btn-dark-hover"
-                  onClick={() => AddToCart(productDetail, cartId, dispatch)}
+                  onClick={() => cartAuth(token,navigate,productDetail, cartId, dispatch)}
                 >
                   Add to Cart
                 </button>

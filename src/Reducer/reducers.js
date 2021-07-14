@@ -5,7 +5,14 @@ export const reducerFunction = (state, action) => {
         ...state,
         products: [...action.payload],
       };
-    case "ADDTOCART":
+    
+    case "GET_USER_CART_DATA": 
+    console.log(action.payload)
+    return {
+      ...state,
+      cartItem: action.payload
+    }
+    case "ADD_TO_CART":
       return {
         ...state,
         cartItem: [...action.payload],
@@ -22,6 +29,7 @@ export const reducerFunction = (state, action) => {
       };
 
     case "ADD_TO_WISHLIST":
+      console.log(action.payload)
       return {
         ...state,
         wishList: [...action.payload],
@@ -37,6 +45,7 @@ export const reducerFunction = (state, action) => {
         cartItem: [...action.payload],
       };
     case "REMOVE_FROM_CART":
+      console.log(action.payload)
       return {
         ...state,
         cartItem: [...action.payload],
@@ -60,8 +69,9 @@ export const reducerFunction = (state, action) => {
       };
 
     case "TOTAL_CART_PRICE":
+      
       const totalPrice = state.cartItem.reduce((acc, cartItem) => {
-        const totalItemPrice = cartItem.productId.price * cartItem.quantity;
+        const totalItemPrice = cartItem._id.price * cartItem.quantity;
         return acc + totalItemPrice;
       }, 0);
       return {

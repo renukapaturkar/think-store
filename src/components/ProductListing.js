@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../App.css";
 import { CartContext } from "../context/cart-context";
 import { WishListContext } from "../context/wishlist-context";
@@ -8,10 +8,12 @@ import axios from "axios";
 import { Filters } from "./Filters";
 import { sortPrice, sortGenre } from "../utils/sort";
 import { SortBy } from "./SortBy";
-import { wishlistDataHandler, presentInWishlist } from "../utils/wishlistUtils";
+import { wishlistAuth, wishlistDataHandler} from "../utils/wishlistUtils";
 import {LoaderSpinner} from "./LoaderSpinner";
+import { useAuth } from "../context/AuthProvider";
 
 function ProductListing() {
+  const {token} = useAuth();
   const {
     products,
     cartItem,
@@ -25,6 +27,25 @@ function ProductListing() {
     WishListContext
   );
 
+  const navigate = useNavigate();
+
+
+  const presentInWishlist = (itemid) => {
+    console.log("itemid",itemid)
+    const wishlistItem = wishList.find((item)=> item._id._id ===itemid)
+    console.log(wishlistItem, "wishlistItem")
+    if(wishlistItem){
+      if(products.some((product)=>product._id === wishlistItem._id._id)){
+        return "badge-liked"
+      }
+      return "badge-unliked"
+    }
+
+  }
+
+
+  
+
   useEffect(() => {
     (async function () {
       try {
@@ -32,6 +53,7 @@ function ProductListing() {
         const response = await axios.get(
           "https://serene-lowlands-13656.herokuapp.com/products"
         );
+
         dispatch({
           type: "DATA_FROM_DATABASE",
           payload: response.data.product,
@@ -63,6 +85,7 @@ function ProductListing() {
           {genreFilter.map((item) => {
             return (
               <span class="card" key={item._id}>
+                {console.log("item._id", item._id)}
                 <Link to={`/${item._id}`}>
                   <div class="img-container">
                     <img class="card-img" src={`${item.image_url}`} alt="img" />
@@ -94,18 +117,8 @@ function ProductListing() {
                   } */}
 
                   <div
-                    class={`wishlist-badge ${presentInWishlist(
-                      item._id,
-                      wishList,
-                      products
-                    )}`}
-                    onClick={() =>
-                      wishlistDataHandler(
-                        item,
-                        wishList,
-                        wishlistId,
-                        WishlistDispatch
-                      )
+                    class={`wishlist-badge ${presentInWishlist(item._id)}`}
+                    onClick={() =>wishlistAuth(token,navigate,item,wishList,wishlistId,WishlistDispatch)
                     }
                   >
                     {" "}

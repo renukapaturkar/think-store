@@ -17,9 +17,9 @@ export const NavigationBar = () => {
           <Link class="link list-inline" to="/wishlist">
             <ion-icon class="badge" name="heart-outline"></ion-icon>
           </Link>
-          {/* <Link class="link list-inline" to="/login">
+          <Link class="link list-inline" to="/login">
             <ion-icon class="badge" name="person-outline"></ion-icon>
-          </Link> */}
+          </Link>
         </span>
       </nav>
     </div>

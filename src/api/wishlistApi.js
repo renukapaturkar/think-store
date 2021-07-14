@@ -6,8 +6,9 @@ export const AddToWishlist = async (item, wishlistId, WishlistDispatch) => {
     const wishlistResponse = await axios.post(
       `https://serene-lowlands-13656.herokuapp.com/wishlists`,
       {
-        wishlistArray: { _id: item._id, productId: item._id },
+        wishlistArray: {_id: item._id}
       }
+  
     );
     WishlistDispatch({
       type: "FIND_WISHLISTID",
@@ -23,15 +24,14 @@ export const AddToWishlist = async (item, wishlistId, WishlistDispatch) => {
     const wishlistResponse = await axios.post(
       `https://serene-lowlands-13656.herokuapp.com/wishlists/${wishlistId}`,
       {
-        wishlistArray: { _id: item._id, productId: item._id },
+        wishlistArray: { _id: item._id},
       }
     );
-    console.log(wishlistId)
-    console.log(wishlistResponse)
+
     WishlistDispatch({
       type: "ADD_TO_WISHLIST",
       payload: wishlistResponse.data.WishlistData.wishlistArray,
     });
-    toastText("Added to Wishlist!");
+    toastText("Added to same Wishlist!");
   }
 };
