@@ -21,7 +21,7 @@ useEffect(()=> {
         console.log(getUserCartData)
         dispatch({type: "FIND_CARTID", payload: getUserCartData.data.CartData._id})
         dispatch({type: "GET_USER_CART_DATA", payload: getUserCartData?.data.CartData.productsArray})
-        dispatch({type: "TOTAL_CART_PRICE"})
+        
       }
 
       
@@ -33,6 +33,8 @@ useEffect(()=> {
   }
 
 }, [token])
+
+
 
 
 
@@ -54,7 +56,7 @@ useEffect(()=> {
       type: "INCREASE_QUANTITY",
       payload: response.data.CartData.productsArray,
     });
-    dispatch({type: "TOTAL_CART_PRICE"})
+   
   };
 
   const decreaseQuantity = async (productId, Quantity, cartId) => {
@@ -73,7 +75,7 @@ useEffect(()=> {
         type: "DECREASE_QUANTITY",
         payload: response.data.CartData.productsArray,
       });
-      dispatch({type: "TOTAL_CART_PRICE"})
+     
     }
   };
 
@@ -90,7 +92,7 @@ useEffect(()=> {
         type: "REMOVE_FROM_CART",
         payload: response?.data.CartData.productsArray,
       });
-      dispatch({type: "TOTAL_CART_PRICE"})
+     
       toastText("Removed from cart");
 
     }
