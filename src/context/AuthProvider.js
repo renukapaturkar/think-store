@@ -9,19 +9,19 @@ export const AuthContext = createContext();
 
 export const AuthProvider = ({children}) => {
     const [token, setToken] = useState(null);
-    const [userData, setUserData] = useState("");
+    const [userDetails, setUserDetails] = useState(null);
     const [errorMessage, setErrorMessage] = useState("");
 
-    console.log(userData)
+    console.log("user data ", userDetails)
     
 
     useEffect(()=> {
         const token = JSON.parse(localStorage.getItem("token"));
-        const userData = JSON.parse(localStorage.getItem("userData"))
-        console.log(userData)
+        const userDetails = JSON.parse(localStorage.getItem("userData"))
+        console.log(userDetails)
         setupAuthHeaderForServiceCalls(token)
         setToken(token)
-        setUserData(userData)
+        setUserDetails(userDetails)
         
         
     },[])
@@ -46,11 +46,12 @@ export const AuthProvider = ({children}) => {
             });
             console.log(status, success, token, userData)
             
-            if(success === true && status === 200){
-                
+            if(status === 200){
+                console.log("running")
                 setToken(token);
                 console.log(token);
-                setUserData(userData)
+                setUserDetails(userData)
+                console.log(userDetails)
                 setupAuthHeaderForServiceCalls(token)
                 localStorage.setItem("token", 
                 JSON.stringify(token));
@@ -67,12 +68,13 @@ export const AuthProvider = ({children}) => {
 
         
     }
+    console.log("user data ", userDetails)
 
 
 
 
     return(
-        <AuthContext.Provider value={{token,setToken,userData, setUserData, errorMessage,setErrorMessage, loginWithUserCredentials}}>
+        <AuthContext.Provider value={{token,setToken,userDetails, setUserDetails, errorMessage,setErrorMessage, loginWithUserCredentials}}>
             {children}
         </AuthContext.Provider>
     )

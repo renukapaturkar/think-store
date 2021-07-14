@@ -41,8 +41,9 @@ const SignupPage = () => {
             password: "",
             confirmPassword: "",
           })
+          toastText("Sign up successfully!")
         }
-        toastText("Sign up successfully!")
+        
 
       }catch(error){
         console.log(error)

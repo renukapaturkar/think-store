@@ -31,9 +31,9 @@ function ProductListing() {
 
 
   const presentInWishlist = (itemid) => {
-    console.log("itemid",itemid)
+    
     const wishlistItem = wishList.find((item)=> item._id._id ===itemid)
-    console.log(wishlistItem, "wishlistItem")
+    
     if(wishlistItem){
       if(products.some((product)=>product._id === wishlistItem._id._id)){
         return "badge-liked"
