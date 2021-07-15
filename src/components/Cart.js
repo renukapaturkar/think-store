@@ -8,74 +8,63 @@ import { useAuth } from "../context/AuthProvider";
 
 export function Cart() {
   const { cartItem, cartId, cartTotal, dispatch } = useContext(CartContext);
-  const {token} = useAuth();
-  console.log(token)
-  console.log("cartId", cartId)
+  const { token } = useAuth();
+  console.log(token);
+  console.log("cartId", cartId);
 
+  useEffect(() => {
+    if (token) {
+      (async function () {
+        const getUserCartData = await axios.get(
+          "https://serene-lowlands-13656.herokuapp.com/carts"
+        );
+        if (getUserCartData.status === 200) {
+          console.log(getUserCartData);
+          dispatch({
+            type: "FIND_CARTID",
+            payload: getUserCartData.data.CartData._id,
+          });
+          dispatch({
+            type: "GET_USER_CART_DATA",
+            payload: getUserCartData?.data.CartData.productsArray,
+          });
+        }
+      })();
+    }
+  }, [token]);
 
-useEffect(()=> {
-  if(token) {
-    (async function (){
-      const getUserCartData = await axios.get('https://serene-lowlands-13656.herokuapp.com/carts')
-      if(getUserCartData.status === 200 ){
-        console.log(getUserCartData)
-        dispatch({type: "FIND_CARTID", payload: getUserCartData.data.CartData._id})
-        dispatch({type: "GET_USER_CART_DATA", payload: getUserCartData?.data.CartData.productsArray})
-        
-      }
+  const increaseQuantity = async (productId, quantity, cartId) => {
+    console.log("productId", productId, "cartId", cartId);
 
-      
-      
-    })()
-
-
-
-  }
-
-}, [token])
-
-
-
-
-
-
-  const increaseQuantity = async (productId, Quantity, cartId) => {
-    console.log("productId",productId,"cartId", cartId)
-
-    const q = Quantity += 1
-    console.log(q)
+    const q = (quantity += 1);
+    console.log(q);
     const response = await axios.post(
       `https://serene-lowlands-13656.herokuapp.com/carts/${cartId}/${productId}`,
       {
         quantity: q,
       }
     );
-    
 
     dispatch({
       type: "INCREASE_QUANTITY",
       payload: response.data.CartData.productsArray,
     });
-   
   };
 
-  const decreaseQuantity = async (productId, Quantity, cartId) => {
-    
-    if (Quantity > 1) {
-      const q = Quantity -= 1;
+  const decreaseQuantity = async (productId, quantity, cartId) => {
+    if (quantity > 1) {
+      const q = (quantity -= 1);
       const response = await axios.post(
         `https://serene-lowlands-13656.herokuapp.com/carts/${cartId}/${productId}`,
         {
           quantity: q,
         }
       );
-     
 
       dispatch({
         type: "DECREASE_QUANTITY",
         payload: response.data.CartData.productsArray,
       });
-     
     }
   };
 
@@ -83,20 +72,18 @@ useEffect(()=> {
     const response = await axios.delete(
       `https://serene-lowlands-13656.herokuapp.com/carts/${cartId}/${productid}`,
       {
-        productsArray: {_id: productid } 
+        productsArray: { _id: productid },
       }
     );
-    
-    if(response.status === 200){
+
+    if (response.status === 200) {
       dispatch({
         type: "REMOVE_FROM_CART",
         payload: response?.data.CartData.productsArray,
       });
-     
+
       toastText("Removed from cart");
-
     }
-
   };
 
   return (
@@ -115,13 +102,18 @@ useEffect(()=> {
                 </div>
                 <div class="content-container">
                   <div>
-                    <div><h4>{item._id.title}</h4></div>
-                    <div><em>
-                    {item._id.author}, {item._id.genre}
-                    </em></div>
-                    <div><b>&#8377; {`${item._id.price * item.quantity}`}</b></div>
+                    <div>
+                      <h4>{item._id.title}</h4>
+                    </div>
+                    <div>
+                      <em>
+                        {item._id.author}, {item._id.genre}
+                      </em>
+                    </div>
+                    <div>
+                      <b>&#8377; {`${item._id.price * item.quantity}`}</b>
+                    </div>
                   </div>
-
 
                   <span>
                     <button
@@ -142,9 +134,14 @@ useEffect(()=> {
                       -
                     </button>
                     <span> | </span>
-                    <span> 
-                   <span class="remove-button" onClick={() => removeFromCart(item._id._id, cartId)}>Remove</span>
-                  </span>
+                    <span>
+                      <span
+                        class="remove-button"
+                        onClick={() => removeFromCart(item._id._id, cartId)}
+                      >
+                        Remove
+                      </span>
+                    </span>
                   </span>
                 </div>
               </div>
@@ -152,31 +149,22 @@ useEffect(()=> {
           })}
         </div>
         <div class="order-container">
-
-        <h4>Price Details </h4>
-        <div class="pricing-container">
-          
-          <div>
-            
-            <div>Total Amount</div>
-            <div>Delivery</div>
-            <div>Total Payable</div>
-            
+          <h4>Price Details </h4>
+          <div class="pricing-container">
+            <div>
+              <div>Total Amount</div>
+              <div>Delivery</div>
+              <div>Total Payable</div>
+            </div>
+            <div>
+              <div>&#8377; {cartTotal}</div>
+              <div>FREE</div>
+              <div>&#8377; {cartTotal}</div>
+            </div>
+            <div></div>
           </div>
-          <div>
-            
-            
-            <div>&#8377; {cartTotal}</div>
-            <div>FREE</div>
-            <div>&#8377; {cartTotal}</div>
-          </div>
-          <div>
-            
-          </div>
+          <button class="btn btn-dark">Place Order</button>
         </div>
-        <button class="btn btn-dark">Place Order</button>
-        </div>
-
       </div>
     </div>
   );

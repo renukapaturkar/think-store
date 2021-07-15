@@ -1,19 +1,19 @@
 .form-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
 }
 
 .form-input {
-    display: flex;
-    flex-direction: column;
-    width: 30rem;
-    align-items: center;
-    padding: 1rem;
-    border-radius: 5%;
+  display: flex;
+  flex-direction: column;
+  width: 30rem;
+  align-items: center;
+  padding: 1rem;
+  border-radius: 5%;
 }
 
 .form-container small {
-    color: red;
+  color: red;
 }

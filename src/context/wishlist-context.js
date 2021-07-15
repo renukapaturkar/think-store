@@ -7,11 +7,14 @@ const wishlistInitialValue = {
 };
 
 export const WishListContext = createContext();
- 
+
 export const WishlistProvider = ({ children }) => {
-  const [state, WishlistDispatch] = useReducer(reducerFunction, wishlistInitialValue);
+  const [state, WishlistDispatch] = useReducer(
+    reducerFunction,
+    wishlistInitialValue
+  );
   return (
-    <WishListContext.Provider value={{ ...state,WishlistDispatch }}>
+    <WishListContext.Provider value={{ ...state, WishlistDispatch }}>
       {children}
     </WishListContext.Provider>
   );

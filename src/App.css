@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Allura&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Allura&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
 
 :root {
   --primary-color: #475569;
@@ -7,14 +7,14 @@
   --light-grey-color: #e5e7eb;
 }
 body {
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
 }
 
 .App {
   margin: 0 auto;
 }
 .page-container {
-  padding:1rem;
+  padding: 1rem;
 }
 .container {
   display: flex;
@@ -55,7 +55,7 @@ body {
   font-size: 32px;
   padding: 1rem;
   color: var(--white-color);
-  font-family: 'Allura', cursive;
+  font-family: "Allura", cursive;
 }
 
 .navigation {
@@ -75,11 +75,10 @@ body {
   padding: 1rem;
 }
 
-.card-container{
+.card-container {
   flex: 3;
-  flex-wrap:wrap;
+  flex-wrap: wrap;
 }
-
 
 .card-container {
   display: flex;
@@ -91,7 +90,7 @@ body {
 .card {
   display: flex;
   flex-direction: column;
-  border:none;
+  border: none;
 
   width: 21rem;
   height: 27rem;
@@ -99,9 +98,9 @@ body {
   margin: 1rem;
   justify-content: start;
   position: relative;
- 
 }
-.card h4, p {
+.card h4,
+p {
   margin: 0;
 }
 .card-horizontal {
@@ -110,15 +109,14 @@ body {
   width: 35rem;
   height: 13rem;
   border: 0.1rem solid var(--light-grey-color);
-
 }
-.product-page-details h4, em, b{
-  padding:0.3rem;
-
+.product-page-details h4,
+em,
+b {
+  padding: 0.3rem;
 }
 
 .img-container {
-
   height: 19rem;
 }
 .img-horizontal-container {
@@ -144,16 +142,13 @@ body {
   color: var(--white-color);
   font-family: "Montserrat", sans-serif;
   outline: var(--primary-color);
-
 }
-.btn-a{
- height: 1.3rem;
- width: 10rem;
-
-
+.btn-a {
+  height: 1.3rem;
+  width: 10rem;
 }
 
-.btn-absolute{
+.btn-absolute {
   position: absolute;
   bottom: 0.4rem;
   left: 5rem;
@@ -170,13 +165,12 @@ body {
 
 .btn-small {
   width: 1.8rem;
-  border:none;
+  border: none;
   background-color: transparent;
   color: var(--primary-color);
   font-size: 1.5rem;
   margin: 0.4rem;
 }
-
 
 .badge {
   width: 1.5rem;
@@ -190,23 +184,22 @@ body {
   right: 3.6rem;
   width: 1.5rem;
   height: 1.5rem;
-  background-color:var(--white-color);
+  background-color: var(--white-color);
   border-radius: 50%;
   color: var(--light-grey-color);
 }
 .badge-liked {
-  color: #B91C1C;
+  color: #b91c1c;
 }
 .badge-unliked {
   color: var(--white-color);
 }
 
-.remove-badge{
-  position:absolute;
-  top:0rem;
-  right:0rem;
+.remove-badge {
+  position: absolute;
+  top: 0rem;
+  right: 0rem;
 }
-
 
 .remove-button {
   font-size: 1.1rem;
