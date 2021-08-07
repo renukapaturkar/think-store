@@ -56,6 +56,7 @@
 }
 
 .bookformat {
+  direction: flex;
   height: 2rem;
   border: 0.1rem solid black;
   padding: 0.8rem;
@@ -77,3 +78,35 @@
   padding-left: 5rem;
   padding-right: 5rem;
 }
+
+/**mobile **/
+@media (max-width: 786px){
+  .productdetail-container {
+    flex-direction: column;
+    padding: 0.5rem;
+
+  }
+
+  .image-container {
+    padding: 1rem;
+    width:15rem;
+    height: 19rem;
+  }
+  .details-container{
+    padding: 0.4rem;
+  }
+
+
+  .bookformat-container{
+    height: 30rem;
+    padding:0.5rem;
+  }
+
+  .bookformat {
+    flex-direction: row;
+  }
+
+
+
+}
+

@@ -2,6 +2,7 @@
     display: flex;
     flex-direction: column;
     height: 91vh;
+    max-width: 100%;
     background: black;
     overflow: hidden;
 }
@@ -49,4 +50,13 @@
 
 /**mobile responsive**/
 
+@media (max-with: 786px){
+    .hero-img-container{
+        flex-direction: row;
+        overflow: hidden;
+    }
 
+    .btn-primary-custom{
+        align-self: center;
+    }
+}

@@ -93,7 +93,7 @@ export function Cart() {
         <EmptyPage />
       ) : (
         <div class="cart-container">
-          <div class="card-container ">
+          <div class="card-container horizontal-card">
             {cartItem.map((item) => {
               return (
                 <div class="card card-horizontal" key={item._id._id}>
