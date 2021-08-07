@@ -49,7 +49,7 @@ export const Filters = () => {
             value="self help"
             onClick={(e) => sortByGenre(e, dispatch)}
           />
-          <label for="self help">Self-Help</label>
+          <label for="self help">Selfhelp</label>
         </div>
         <div>
           <input
@@ -62,6 +62,8 @@ export const Filters = () => {
           <label for="business">Business</label>
         </div>
       </div>
+
+
     </div>
     )
 }

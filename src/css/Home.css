@@ -1,0 +1,52 @@
+.hero-img-container {
+    display: flex;
+    flex-direction: column;
+    height: 91vh;
+    background: black;
+    overflow: hidden;
+}
+
+.hero-img{
+    position: relative;
+    object-fit: cover;
+    opacity: 0.3;
+}
+
+.text-overlay{
+    display: flex;
+    flex-direction: column;
+    font-size: 4rem;
+    position: absolute;
+    top:30%;
+    left:30%;
+    color:var(--white-color);
+    align-items: center;
+   
+
+}
+
+.text-overlay q {
+    font-family: "Allura", cursive;
+}
+
+.second-heading {
+    font-family: "Montserrat", sans-serif;
+    font-size: x-large;
+    padding: 2rem;
+    font-style: italic;
+}
+
+.btn-primary-custom {
+    margin: 3rem;
+    width: 20rem;
+    height: 5rem;
+    background-color: transparent;
+    font-size: 1.4rem;
+    border: 1px solid var(--white-color);
+
+    
+}
+
+/**mobile responsive**/
+
+

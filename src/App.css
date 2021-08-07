@@ -2,12 +2,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
 
 :root {
-  --primary-color: #475569;
+  --primary-color: #1F2937;
   --white-color: #f8fafc;
   --light-grey-color: #e5e7eb;
 }
 body {
-  font-family: "Open Sans", sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
 
 .App {
@@ -21,14 +21,28 @@ body {
 }
 .filter-container {
   flex-direction: column;
-  width: 17rem;
-  padding: 1rem;
-  padding-top: 5rem;
+  width: 24rem;
+  padding: 0.5rem;
+  padding-top: 4rem;
+}
+
+.filter-container div{
+  padding: 0.4rem;
+  font-family: "Open Sans", sans-serif;
 }
 
 .sortby-container {
   text-align: end;
+  
 }
+
+.sortby-container select option {
+  font-family: "Open Sans", sans-serif;
+  
+}
+
+
+
 
 .main-container {
   padding: 1rem 2rem 2rem 2rem;
@@ -52,7 +66,7 @@ body {
 
 .heading {
   font-weight: normal;
-  font-size: 32px;
+  font-size: 3rem;
   padding: 1rem;
   color: var(--white-color);
   font-family: "Allura", cursive;
@@ -86,14 +100,15 @@ body {
   justify-content: center;
   width: 100%;
   flex-wrap: wrap;
+ 
 }
 .card {
   display: flex;
   flex-direction: column;
   border: none;
-
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   width: 21rem;
-  height: 27rem;
+  height: 29rem;
   padding: 0.5rem;
   margin: 1rem;
   justify-content: start;
@@ -199,6 +214,8 @@ b {
   position: absolute;
   top: 0rem;
   right: 0rem;
+  color: var(--primary-color);
+  border-radius: 50%;
 }
 
 .remove-button {

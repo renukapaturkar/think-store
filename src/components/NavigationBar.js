@@ -15,7 +15,7 @@ export const NavigationBar = () => {
             <ion-icon class="badge" name="cart-outline"></ion-icon>
           </Link>
           <Link class="link list-inline" to="/wishlist">
-            <ion-icon class="badge" name="heart-outline"></ion-icon>
+            <ion-icon class="badge" name="heart-outline" ></ion-icon>
           </Link>
           <Link class="link list-inline" to="/login">
             <ion-icon class="badge" name="person-outline"></ion-icon>

@@ -10,6 +10,7 @@ import { presentInWishlist } from "../utils/wishlistUtils";
 import { cartAuth, presentInCart } from "../utils/cartUtils";
 import { LoaderSpinner } from "./LoaderSpinner";
 import { useAuth } from "../context/AuthProvider";
+import { wishlistAuth } from "../utils/wishlistUtils";
 
 export const ProductDetails = () => {
   const { token } = useAuth();
@@ -18,7 +19,7 @@ export const ProductDetails = () => {
   const productDetail = UseProductDetails(id);
   const { products, cartItem, cartId, dispatch, loader } =
     useContext(CartContext);
-  const { wishList } = useContext(WishListContext);
+  const { wishList, wishlistId, WishlistDispatch } = useContext(WishListContext);
 
   return (
     <div>
@@ -34,14 +35,21 @@ export const ProductDetails = () => {
               />
 
               <div
-                class={`wishlist-badge wishlist-icon  ${presentInWishlist(
+                className={`wishlist-badge wishlist-icon ${presentInWishlist(
                   productDetail._id,
                   wishList,
                   products
                 )}`}
-                // onClick={() =>
-                //     wishlistAuth((token,navigate,productDetail,wishList,wishlistId,WishlistDispatch))
-                // }
+                onClick={() =>
+                  wishlistAuth(
+                    token,
+                    navigate,
+                    productDetail,
+                    wishList,
+                    wishlistId,
+                    WishlistDispatch
+                  )
+                }
               >
                 <ion-icon class="badge-lg" name="heart"></ion-icon>
               </div>

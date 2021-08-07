@@ -25,3 +25,38 @@
 .order-container button {
   align-self: center;
 }
+
+.cartempty-container {
+  padding: 5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: "Montserrat", sans-serif;
+}
+
+.cartempty-container div {
+  padding: 2rem;
+  font-size: 1rem;
+  text-align: center;
+  font-style: italic;
+  font-weight: bold;
+}
+
+.cartempty-container q {
+  padding: 1rem;
+  font-size: 1.5rem;
+  font-style: italic;
+}
+
+.cartempty-container button {
+  margin: 2rem;
+  width: 15rem;
+  padding: 1rem;
+  background-color: var(--primary-color);
+  color: var(--white-color);
+  font-weight: 100;
+  font-size: 1rem;
+  border-radius: 0.5rem;
+  border: none;
+}
