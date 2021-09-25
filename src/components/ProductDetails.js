@@ -73,16 +73,6 @@ export const ProductDetails = () => {
               <p>{productDetail.description}</p>
             </div>
 
-            <div class="bookformat-container">
-              {productDetail.book_format.map(function (format) {
-                return (
-                  <span class="bookformat">
-                    <span>{format}</span>
-                    <span> | Rs.{productDetail.price}</span>
-                  </span>
-                );
-              })}
-            </div>
             <div>
               {presentInCart(productDetail._id, cartItem) === false ? (
                 <button
