@@ -56,8 +56,8 @@ const LoginPage = () => {
             <button className="btn btn-dark-hover" type="submit">
               Login
             </button>
-            <button className="btn btn-dark-hover" onClick={loginAsGuest}>
-            Login as Guest</button>
+            {/* <button className="btn btn-dark-hover" onClick={loginAsGuest}>
+            Login as Guest</button> */}
           </form>
           <div>
             <small>
