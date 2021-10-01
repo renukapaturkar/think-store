@@ -19,6 +19,11 @@ const LoginPage = () => {
     navigate(state?.from ? state.from : "/userprofile");
   };
 
+  const loginAsGuest = (e) => {
+    setEmail("rpaturkar21@gmail.com")
+    setPassword("Renuka@123")
+  }
+
   return (
     <div>
       {token ? (
@@ -51,8 +56,10 @@ const LoginPage = () => {
             <small>{errorMessage}</small>
 
             <button className="btn btn-dark-hover" type="submit">
-              log in
+              Login
             </button>
+            <button className="btn btn-dark-hover" onClick={loginAsGuest}>
+            Login as Guest</button>
           </form>
           <div>
             <small>
