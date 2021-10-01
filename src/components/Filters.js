@@ -51,16 +51,6 @@ export const Filters = () => {
           />
           <label for="self help">Selfhelp</label>
         </div>
-        <div>
-          <input
-            type="radio"
-            id="business"
-            name="Genre"
-            value="business"
-            onClick={(e) => sortByGenre(e, dispatch)}
-          />
-          <label for="business">Business</label>
-        </div>
       </div>
 
 
