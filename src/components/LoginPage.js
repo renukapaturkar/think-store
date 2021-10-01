@@ -8,8 +8,8 @@ import UserProfile from "./UserProfile";
 
 const LoginPage = () => {
   const { token, errorMessage, loginWithUserCredentials } = useAuth();
-  const [email, setEmail] = useState(null);
-  const [password, setPassword] = useState(null);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const { state } = useLocation();
   const navigate = useNavigate();
 
@@ -41,7 +41,6 @@ const LoginPage = () => {
                 placeholder="Username or Email Address"
                 type="email"
                 onChange={(e) => setEmail(e.target.value)}
-                required
               />
             </div>
             <div className="form-input">
@@ -50,7 +49,6 @@ const LoginPage = () => {
                 placeholder="Password"
                 type="password"
                 onChange={(e) => setPassword(e.target.value)}
-                required
               />
             </div>
             <small>{errorMessage}</small>

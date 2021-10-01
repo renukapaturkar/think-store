@@ -27,13 +27,13 @@ const UserProfile = () => {
         <span>
           <b>Email address:</b>{" "}
         </span>
-        <span>{userDetails?.email}</span>
+        <span>{userDetails ? userDetails?.email : "rpaturkar21@gmail.com"}</span>
       </div>
       <div>
         <span>
           <b>Name:</b>{" "}
         </span>
-        <span>{userDetails?.name}</span>
+        <span>{userDetails ? userDetails?.email : "Renuka Paturkar"}</span>
       </div>
 
       <div>You are logged in! Shop your favorites!</div>
