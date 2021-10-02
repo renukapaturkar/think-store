@@ -1,0 +1,273 @@
+@import url("https://fonts.googleapis.com/css2?family=Allura&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
+
+:root {
+  --primary-color: #1F2937;
+  --white-color: #f8fafc;
+  --light-grey-color: #e5e7eb;
+}
+body {
+  font-family: "Montserrat", sans-serif;
+}
+
+.App {
+  margin: 0 auto;
+}
+.page-container {
+  padding: 1rem;
+}
+.container {
+  display: flex;
+}
+.filter-container {
+  flex-direction: column;
+  width: 24rem;
+  padding: 0.5rem;
+  padding-top: 4rem;
+}
+
+.filter-container div{
+  padding: 0.4rem;
+  font-family: "Open Sans", sans-serif;
+}
+
+.sortby-container {
+  text-align: end;
+  
+}
+
+.sortby-container select option {
+  font-family: "Open Sans", sans-serif;
+  
+}
+
+
+
+
+.main-container {
+  padding: 1rem 2rem 2rem 2rem;
+}
+
+.link {
+  text-decoration: none;
+}
+
+.list-non-bullet {
+  list-style: none;
+  padding: 1rem;
+}
+
+.list-inline {
+  display: inline;
+  padding: 1rem;
+  color: var(--white-color);
+  cursor: pointer;
+}
+
+.heading {
+  font-weight: normal;
+  font-size: 3rem;
+  padding: 1rem;
+  color: var(--white-color);
+  font-family: "Allura", cursive;
+}
+
+.navigation {
+  max-width: 100%;
+  height: 5rem;
+  background-color: var(--primary-color);
+  position: sticky;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 1;
+}
+
+
+
+.cart-container {
+  display: flex;
+  padding: 1rem;
+}
+
+.card-container {
+  flex: 3;
+  flex-wrap: wrap;
+}
+
+.horizontal-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card-container {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  width: 100%;
+  flex-wrap: wrap;
+ 
+}
+.card {
+  display: flex;
+  flex-direction: column;
+  border: none;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  width: 21rem;
+  height: 29rem;
+  padding: 0.5rem;
+  margin: 1rem;
+  justify-content: start;
+  position: relative;
+}
+.card h4,
+p {
+  margin: 0;
+}
+.card-horizontal {
+  display: flex;
+  flex-direction: row;
+  width: 35rem;
+  height: 13rem;
+  border: 0.1rem solid var(--light-grey-color);
+}
+.product-page-details h4,
+em,
+b {
+  padding: 0.3rem;
+}
+
+.img-container {
+  height: 19rem;
+}
+.img-horizontal-container {
+  height: 12rem;
+  width: 9rem;
+  padding: 0.5rem;
+}
+
+.card-img {
+  max-width: 100%;
+  height: 100%;
+}
+
+.btn {
+  padding: 0.5rem;
+  width: 10rem;
+  height: 2.5rem;
+  margin: 0.2rem;
+  font-weight: normal;
+  text-align: center;
+  font-size: 1rem;
+  border: 0.1rem solid var(--primary-color);
+  color: var(--white-color);
+  font-family: "Montserrat", sans-serif;
+  outline: var(--primary-color);
+}
+.btn-a {
+  height: 1.3rem;
+  width: 10rem;
+}
+
+.btn-absolute {
+  position: absolute;
+  bottom: 0.4rem;
+  left: 5rem;
+}
+
+.btn-dark {
+  background-color: transparent;
+  color: var(--primary-color);
+}
+.btn-dark-hover {
+  background-color: var(--primary-color);
+  color: var(--white-color);
+}
+
+.btn-small {
+  width: 1.8rem;
+  border: none;
+  background-color: transparent;
+  color: var(--primary-color);
+  font-size: 1.5rem;
+  margin: 0.4rem;
+}
+
+.badge {
+  width: 1.5rem;
+  height: 1.5rem;
+  text-align: center;
+}
+
+.wishlist-badge {
+  position: absolute;
+  top: 1.2rem;
+  right: 3.6rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  background-color: var(--white-color);
+  border-radius: 50%;
+  color: var(--light-grey-color);
+}
+.badge-liked {
+  color: #b91c1c;
+}
+.badge-unliked {
+  color: var(--white-color);
+}
+
+.remove-badge {
+  position: absolute;
+  top: 0rem;
+  right: 0rem;
+  color: var(--primary-color);
+  border-radius: 50%;
+}
+
+.remove-button {
+  font-size: 1.1rem;
+  font-weight: normal;
+  cursor: pointer;
+}
+
+
+/**mobile responsive**/
+
+@media (max-width: 786px) {
+  .list-inline{
+    padding: 0.1rem;
+  }
+  .heading {
+    padding: 0.4rem;
+    font-size: 1.5rem;
+  }
+
+  .navigation {
+    width:100%;
+  }
+
+  .container{
+    flex-direction: column;
+  }
+
+
+  .wishlist-badge {
+    right:1.6rem;
+  }
+
+  .cart-container{
+    flex-direction: column-reverse;
+    align-self: center;
+  }
+  .card-horizontal {
+    margin:0.2rem;
+    border:none;
+    width:15rem;
+    height: 24rem;
+    flex-direction: column;
+  }
+
+  
+}

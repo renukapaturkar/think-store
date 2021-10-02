@@ -1,0 +1,79 @@
+.content-container {
+  padding-left: 2rem;
+  align-content: flex-start;
+  text-align: start;
+}
+
+.order-container {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  border: 0.07rem solid var(--light-grey-color);
+  margin-right: 5rem;
+}
+
+.pricing-container {
+  display: flex;
+  width: 20rem;
+  height: 10rem;
+  justify-content: space-evenly;
+}
+.pricing-container div {
+  padding: 0.5rem;
+}
+
+.order-container button {
+  align-self: center;
+  background-color: var(--primary-color);
+  color: var(--white-color);
+}
+
+.cartempty-container {
+  padding: 5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: "Montserrat", sans-serif;
+}
+
+.cartempty-container div {
+  padding: 2rem;
+  font-size: 1rem;
+  text-align: center;
+  font-style: italic;
+  font-weight: bold;
+}
+
+.cartempty-container q {
+  padding: 1rem;
+  font-size: 1.5rem;
+  font-style: italic;
+}
+
+.cartempty-container button {
+  margin: 2rem;
+  width: 15rem;
+  padding: 1rem;
+  background-color: var(--primary-color);
+  color: var(--white-color);
+  font-weight: 100;
+  font-size: 1rem;
+  border-radius: 0.5rem;
+  border: none;
+}
+
+/**mobile **/
+
+@media (max-width:786px){
+ .order-container{
+   border:none;
+   width:15rem;
+ }
+
+ .order-container button {
+   align-self: center;
+   width:13rem;
+
+ }
+}
