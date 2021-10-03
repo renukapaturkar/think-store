@@ -8,12 +8,26 @@
 .form-input {
   display: flex;
   flex-direction: column;
+  max-width: 100%;
   width: 30rem;
-  align-items: center;
   padding: 1rem;
+  align-items: center;
   border-radius: 5%;
 }
 
 .form-container small {
   color: red;
+}
+
+
+/**mobile **/
+@media (max-width: 786px){
+
+  .form-container {
+    width: 23rem;
+    padding: 0;
+  }
+
+
+
 }

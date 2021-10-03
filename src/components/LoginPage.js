@@ -13,16 +13,18 @@ const LoginPage = () => {
   const { state } = useLocation();
   const navigate = useNavigate();
 
+  const loginAsGuest = () => {
+    setEmail("rpaturkar21@gmail.com")
+    setPassword("Renuka@123")
+  }
+
   const loginHandler = async (e) => {
     e.preventDefault();
     await loginWithUserCredentials(email, password);
     navigate(state?.from ? state.from : "/userprofile");
   };
 
-  const loginAsGuest = (e) => {
-    setEmail("rpaturkar21@gmail.com")
-    setPassword("Renuka@123")
-  }
+
 
   return (
     <div>
@@ -56,7 +58,7 @@ const LoginPage = () => {
             <button className="btn btn-dark-hover" type="submit">
               Login
             </button>
-            {/* <button className="btn btn-dark-hover" onClick={loginAsGuest}>
+            {/* <button className="btn btn-dark-hover" onClick={loginAsGuest} type="submit">
             Login as Guest</button> */}
           </form>
           <div>
